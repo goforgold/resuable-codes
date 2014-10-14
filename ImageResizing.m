@@ -2,12 +2,6 @@
 
 @interface MyUIViewController ()
 
-{
-    UIEdgeInsets currentInsets;
-    CGPoint currentOffset;
-    
-    NSString *letters;
-}
 
 @end
 
@@ -21,6 +15,9 @@
     
     BOOL needsRedraw = NO;
     
+    // Check if width of source image is greater than width of target image
+    // Calculate the percentage of change in width required and update it in toSize accordingly.
+    
     if (sourceSize.width > toSize.width) {
         
         CGFloat ratioChange = (sourceSize.width - toSize.width) * 100 / sourceSize.width;
@@ -29,6 +26,11 @@
         
         needsRedraw = YES;
     }
+    
+    // Now we need to make sure that if we chnage the height of image in same proportion
+    // Calculate the percentage of change in width required and update it in target size variable.
+    // Also we need to again change the height of the target image in the same proportion which we
+    /// have calculated for the change.
     
     if (toSize.height < targetSize.height) {
         
@@ -40,12 +42,16 @@
         needsRedraw = YES;
     }
     
+    // To redraw the image
+    
     if (needsRedraw) {
         UIGraphicsBeginImageContext(toSize);
         [image drawInRect:CGRectMake(0.0, 0.0, toSize.width, toSize.height)];
         result = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
     }
+    
+    // Return the result
     
     return result;
 }
