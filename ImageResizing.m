@@ -1,11 +1,11 @@
-#import "MyUIViewController.h"
+#import "ImageResizing.h"
 
-@interface MyUIViewController ()
+@interface ImageResizing ()
 
 
 @end
 
-@implementation MyUIViewController
+@implementation ImageResizing
 
 + (UIImage*)resizeImage:(UIImage*)image toFitInSize:(CGSize)toSize
 {
